@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Intro_slide_tut</string>
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">slide-1!</string>
+    <string name="slide_1_desc">This is first slide!</string>
+
+    <string name="slide_2_title">slide-2!</string>
+    <string name="slide_2_desc">this is second slide!</string>
+
+    <string name="slide_3_title">slide-3</string>
+    <string name="slide_3_desc">this is third slide</string>
+
+
+
+    <string name="main_act_cont"> Welcome slider comes only when prefmanager
+        class finds that the app is being used for the first time. Still if you
+        want to view Intro slider/welcome slider, goto Settings ->
+        apps -> welcome slider -> clear data.
+    </string>
+    <string name="play_again">Play Again</string>
+</resources>
