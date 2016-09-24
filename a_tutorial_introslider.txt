@@ -1,0 +1,146 @@
+AppIntroSlider:
+
+unlike splash screen, app intro slider run only for the first time(when the app is launched for the first time after installation). by introslider we can tell the user the benifits of installing our application or maybe a jist of what we and our app is upto. 
+
+starting with the very basics, firstly we need to design our introslider's look. there has to be a proper color selection for it. once you are done with selecting the colors follow the given steps:
+
+1. add the value of the selected colors to the colors.xml file in res/values folder. 
+(sample color values: neon green #32CD32, neon purple #800080, neon yellow #ffff00
+light green color code #90EE90, datk green #006400, indigo #4B0082, orchid #9932CC
+ dark yellow#CCCC00, light yellow #FFFF33)
+
+<!-- in colors.xml-->
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- bg_colors-->
+    <color name="bg_sc1">#32CD32</color>
+    <color name="bg_sc2">#800080</color>
+    <color name="bg_sc3">#ffff00</color>
+
+    <!--dots_act-->
+    <color name="lt_dot_sc1">#90EE90</color>
+    <color name="lt_dot_sc2">#4B0082</color>
+    <color name="lt_dot_sc3">#FFFF33</color>
+
+    <!--dots_deact-->
+    <color name="dk_dot_sc1">#006400</color>
+    <color name="dk_dot_sc2">#9932CC</color>
+    <color name="dk_dot_sc3">#CCCC00</color>
+
+    <array name="dot_act_arr">
+        <item>@color/lt_dot_sc1</item>
+        <item>@color/lt_dot_sc2</item>
+        <item>@color/lt_dot_sc3</item>
+    </array>
+
+    <array name="dot_inact_arr">
+        <item>@color/dk_dot_sc1</item>
+        <item>@color/dk_dot_sc2</item>
+        <item>@color/dk_dot_sc3</item>
+    </array>
+
+</resources>
+
+
+2. in res/values/strings.xml , the following snippet of code will ensure that whatever text we use is encoded into string.
+
+In strings.xml
+<resources>
+    <string name="app_name">Intro_slide_tut</string>
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">slide-1!</string>
+    <string name="slide_1_desc">This is first slide!</string>
+
+    <string name="slide_2_title">slide-2!</string>
+    <string name="slide_2_desc">this is second slide!</string>
+
+    <string name="slide_3_title">slide-3</string>
+    <string name="slide_3_desc">this is third slide</string>
+
+
+
+    <string name="main_act_cont"> Welcome slider comes only when prefmanager
+        class finds that the app is being used for the first time. Still if you
+        want to view Intro slider/welcome slider, goto Settings ->
+        apps -> welcome slider -> clear data.
+    </string>
+    <string name="play_again">Play Again</string>
+</resources>
+
+
+
+3. add the proper dimensions to the res/values/dimens.xml file
+
+<!-- Default screen margins, per the Android Design guidelines. -->
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">30dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
+</resources>
+
+
+
+4. because of latest tools, the app may crash. so, add the following code tto the styles.xml file
+styles.xml
+<resources>
+ 
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+ 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+ 
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+ 
+</resources>
+
+
+5. Create slides (of xml layout type in the res folder) for your IntroSlider in the res folder. Make sure to add the images used in the drawable folder and they should be in the png format.
+ Note that these may not be converted from some another format by simply changing the extension of the file. use any tool to convert
+the syntax of these images.
+(word of advice) make the proper allignments, otherwise it will not be represented as you may want it to look.
+you msy create any numbr of slides. but make sure to put things in proper place. By this I mean that adding slides in the res folder simply won't put them in your app. You need to add them in the respective .java file too(about which we will learn anytime soon (: ).
+
+code 
+
+6. create a class (let's say PrefManager) which will make sure that a user view's the intro slider only if the app is run for the first time. copy and paste the code in your class from PrefManager file.
+
+
+7. Now create an activity (activity_intro_slider), which will be the basic structure of each slide created above. this will include:-
+
+	1. a ViewPager for the slides we have created. ViewPagers have built-in swipe gestures to transition through pages, and they display screen 	slide animations by default, so you don't need to create any. ViewPagers use PagerAdapters as a supply for new pages to display, so the 	PagerAdapter will use the fragment class that you created earlier.
+
+	2. 2 buttons. one for skipping the intro slidder and one for next. when the user is viewing the last of the slides, skip button is removed 	and the next button changes to got it button.
+
+	3. a linear layout + a view for the dots at the bottom.
+
+8. In the corresponding .java class copy and paste the code from the source code. this will be the controlling class for the intro slides.
+
+
+I have tried to explain all the things which a developer (new to android) may feel quite hard to understand. still if you find that some aspect has been missed, feel free to contact and help others.
+
+
+Cheers! Happy Codding!
+ 
